@@ -1,3 +1,9 @@
+[submodule "notification-service"]
+	path = notification-service
+	url = https://github.com/MaksymKalennyk/twitter-notification-service
+[submodule "post-service"]
+	path = post-service
+	url = https://github.com/MaksymKalennyk/twitter-post-service
 [submodule "auth-service"]
 	path = auth-service
 	url = https://github.com/MaksymKalennyk/twitter-auth-service
