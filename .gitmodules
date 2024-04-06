@@ -4,3 +4,6 @@
 [submodule "post-service"]
 	path = post-service
 	url = https://github.com/MaksymKalennyk/twitter-post-service
+[submodule "auth-service"]
+	path = auth-service
+	url = https://github.com/MaksymKalennyk/twitter-auth-service
