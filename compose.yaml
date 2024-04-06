@@ -1,0 +1,44 @@
+services:
+  auth-service:
+    build: ./auth-service
+    ports:
+      - '8081:8080'
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - SPRING_DATA_MONGODB_URI=mongodb://root:root@mongodb:27017/twitter
+      - SPRING_REDIS_HOST=redis
+    depends_on:
+      - mongodb
+      - redis
+  post-service:
+    build: ./post-service
+    ports:
+      - '8082:8080'
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - SPRING_DATA_MONGODB_URI=mongodb://root:root@mongodb:27017/twitter
+    depends_on:
+      - mongodb
+  notification-service:
+    build: ./notification-service
+    ports:
+      - '8083:8080'
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - SPRING_DATA_REDIS_HOST=redis
+    depends_on:
+      - mongodb
+      - redis
+  mongodb:
+    image: 'mongo:latest'
+    container_name: "mongodb"
+    environment:
+      - 'MONGO_INITDB_DATABASE=twitter'
+      - 'MONGO_INITDB_ROOT_PASSWORD=root'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - "27017:27017"
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379'
